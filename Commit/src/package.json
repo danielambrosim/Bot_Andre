@@ -10,6 +10,7 @@
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",
     "@types/node": "^22.9.0",
+    "@types/node-telegram-bot-api": "^0.64.7",
     "@types/nodemailer": "^6.4.16",
     "@types/pg": "^8.11.10",
     "ts-node": "^10.9.2",
