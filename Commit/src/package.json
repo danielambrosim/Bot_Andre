@@ -1,5 +1,6 @@
 {
   "scripts": {
+    "predev":"npx tsc",
     "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules bot.ts"
   },
   "dependencies": {
