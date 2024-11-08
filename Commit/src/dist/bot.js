@@ -92,3 +92,74 @@ async function saveToDatabase(nome, email, cpf, senha) {
         console.error('Erro ao salvar no banco de dados:', error);
     }
 }
+// import TelegramBot from 'node-telegram-bot-api';
+// import nodemailer from 'nodemailer';
+// // Configuração do bot Telegram
+// const bot = new TelegramBot(process.env.TELEGRAM_TOKEN!, { polling: true });
+// // Configuração do serviço de e-mail com nodemailer
+// const transporter = nodemailer.createTransport({
+//     host: 'smtp.seuservidor.com', // substitua pelo SMTP do seu provedor
+//     port: 587,                     // porta usada pelo SMTP do seu provedor
+//     auth: {
+//         user: 'seu_email',         // substitua pelo seu e-mail
+//         pass: 'sua_senha',         // substitua pela sua senha do e-mail
+//     },
+// });
+// // Variáveis para rastrear o estado e informações do usuário
+// enum State { NONE, EMAIL, EMAIL_VERIFICACAO }
+// let userState: { [key: number]: State } = {};
+// let userData: { [key: number]: { email?: string, codigo?: number } } = {};
+// // Função para enviar o código de confirmação por e-mail
+// function enviarCodigoEmail(destino: string, codigo: number) {
+//     const mailOptions = {
+//         from: 'seu_email',       // e-mail remetente
+//         to: destino,             // e-mail destinatário
+//         subject: 'Código de Confirmação',
+//         text: `Seu código de confirmação é: ${codigo}`,
+//     };
+//     transporter.sendMail(mailOptions, (error, info) => {
+//         if (error) {
+//             console.error('Erro ao enviar e-mail:', error);
+//         } else {
+//             console.log('E-mail enviado:', info.response);
+//         }
+//     });
+// }
+// // Início do bot com a mensagem de boas-vindas
+// bot.onText(/\/start/, (msg) => {
+//     const chatId = msg.chat.id;
+//     bot.sendMessage(chatId, "Bem-vindo ao cadastro! Por favor, informe o seu e-mail:");
+//     userState[chatId] = State.EMAIL;
+//     userData[chatId] = {}; // Cria um espaço para os dados deste usuário
+// });
+// // Lógica para lidar com as mensagens do usuário e o fluxo do cadastro
+// bot.on('message', (msg) => {
+//     const chatId = msg.chat.id;
+//     const text = msg.text || '';
+//     // Verifica o estado atual do usuário
+//     switch (userState[chatId]) {
+//         case State.EMAIL:
+//             // Salva o e-mail e gera o código de confirmação
+//             userData[chatId].email = text;
+//             const codigo = Math.floor(100000 + Math.random() * 900000); // Gera um código de 6 dígitos
+//             userData[chatId].codigo = codigo;
+//             // Envia o código para o e-mail do usuário
+//             enviarCodigoEmail(text, codigo);
+//             bot.sendMessage(chatId, "Código de confirmação enviado para o seu e-mail. Digite o código recebido:");
+//             userState[chatId] = State.EMAIL_VERIFICACAO;
+//             break;
+//         case State.EMAIL_VERIFICACAO:
+//             // Verifica se o código digitado pelo usuário é o mesmo que foi enviado por e-mail
+//             if (parseInt(text) === userData[chatId].codigo) {
+//                 bot.sendMessage(chatId, "E-mail confirmado! Cadastro concluído com sucesso.");
+//                 userState[chatId] = State.NONE;
+//                 delete userData[chatId]; // Limpa os dados do usuário após o cadastro
+//             } else {
+//                 bot.sendMessage(chatId, "Código incorreto. Por favor, tente novamente.");
+//             }
+//             break;
+//         default:
+//             bot.sendMessage(chatId, "Envie /start para iniciar o cadastro.");
+//             break;
+//     }
+// });
