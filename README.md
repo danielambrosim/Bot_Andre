@@ -1,6 +1,4 @@
 
-
-
 # Instalar pacotes principais
 npm install pg node-telegram-bot-api nodemailer cpf-cnpj-validator bcrypt dotenv
 
